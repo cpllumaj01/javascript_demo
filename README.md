@@ -1,2 +1,2 @@
-# javascript_demo
+# rockPaperScissor 
 This is a demo file for java script
