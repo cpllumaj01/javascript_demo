@@ -1,8 +1,9 @@
-/* This function gets a random number from
-0 to 1, multiplies it by 3, and rounds it up.
-It uses that randomly generated number to pick
-rock paper or scissor and console log it*/
+//defining computer and player choices
+let computer;
+let player;
 
+
+//Randomly gets rock paper or scisor for computer
 function computerPlay() {
     let output = Math.random() * 3;
     switch (Math.ceil(output)) {
@@ -32,14 +33,8 @@ function playerPlay(){
     return player;
 }
 
-//defining computer and player choices
-let computer;
-let player;
-
-/*defines game of rock paper scissor based on player 
-and computer inputs*/
+/*plays round of rock paper scissor based on 2 inputs and returns result as a string*/
 function playRound(player, computer) {
-    //defines tie win and lose message
     let tie = `It's a tie, you both choose ${player}`;
     let win = `You win! ${player} beats ${computer}`;
     let lose = `You lose! ${computer} beats ${player}`;
@@ -91,7 +86,7 @@ function playRound(player, computer) {
 } 
 
 //plays game for 5 rounds
-function game(){
+/*function game(){
     for (let i = 0; i < 5; i++){
         console.log(`Round ${i}!!!`);
         computer = computerPlay();
@@ -100,4 +95,4 @@ function game(){
     }
 }
 
-game();
+game();*/
