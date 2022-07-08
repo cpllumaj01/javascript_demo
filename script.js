@@ -1,7 +1,10 @@
-//defining computer and player choices
+//defining variables
 let computer;
 let player;
-
+let cptally = 0;
+let ptally = 0;
+let winMsg = 'You survived this time...';
+let lossMsg = 'You lose...';
 
 //Randomly gets rock paper or scisor for computer
 function computerPlay() {
@@ -22,7 +25,7 @@ function computerPlay() {
     }
 }
 
-//Gets player choice and makes sure its rock paper or scissor
+//Gets player choice by alert and makes sure its rock paper or scissor
 function playerPlay(){
     let player = '';
     while(!player){
@@ -46,9 +49,11 @@ function playRound(player, computer) {
                     return tie;
                     break;
                 case 'paper':
+                    cptally++;
                     return lose;
                     break;
                 case 'scissor':
+                    ptally++;
                     return win;
                     break;
             }
@@ -56,12 +61,14 @@ function playRound(player, computer) {
         case 'paper':
             switch (computer){
                 case 'rock':
+                    ptally++;
                     return win;
                     break;
                 case 'paper':
                     return tie;
                     break;
                 case 'scissor':
+                    cptally++;
                     return lose;
                     break;
             }
@@ -69,9 +76,11 @@ function playRound(player, computer) {
         case 'scissor':
             switch (computer){
                 case 'rock':
+                    cptally++;
                     return lose;
                     break;
                 case 'paper':
+                    ptally++;
                     return win;
                     break;
                 case 'scissor':
@@ -82,17 +91,69 @@ function playRound(player, computer) {
         default:
             console.log('did not work');
     }
-
 } 
 
-//plays game for 5 rounds
-/*function game(){
-    for (let i = 0; i < 5; i++){
-        console.log(`Round ${i}!!!`);
-        computer = computerPlay();
-        player = playerPlay();
-        console.log(playRound(player, computer));
+
+//Outputs result of a round
+function outputResult(player){
+    result.textContent = playRound(player, computerPlay());
+    pscore.textContent = ptally;
+    cpscore.textContent = cptally;
+    if (cptally >= 5){
+        result.textContent = lossMsg;
+        disableButtons();
+        return;
+    } else if (ptally >= 5){
+        result.textContent = winMsg;
+        disableButtons();
+        return;
     }
 }
 
-game();*/
+//Gets button elements by ID
+const rock = document.getElementById('r');
+const paper = document.getElementById('p');
+const scissor = document.getElementById('s');
+
+//Enables button eventlisteners
+function enableButtons(){
+    rock.addEventListener('click', ()=> {
+        outputResult('rock');
+    });
+    paper.addEventListener('click', () => {
+        outputResult('paper');
+    });
+    scissor.addEventListener('click', () => {
+        outputResult('scissor');
+    });
+}
+
+//Disables button eventlisteners
+function disableButtons(){
+    rock.removeEventListener('click', ()=> {
+        outputResult('rock');
+    });
+    paper.removeEventListener('click', () => {
+        outputResult('paper');
+    });
+    scissor.removeEventListener('click', () => {
+        outputResult('scissor');
+    });
+}
+
+enableButtons();
+
+//gets, creates, and edits element for html
+const body = document.querySelector('#body');
+const result = document.createElement('div');
+result.classList.add('result');
+body.appendChild(result);
+const pscore = document.createElement('div');
+const cpscore = document.createElement('div');
+pscore.textContent = ptally;
+cpscore.textContent = cptally;
+const pname = document.getElementsByClassName('names')[0];
+const cpname = document.getElementsByClassName('names')[1];
+pname.appendChild(pscore);
+cpname.appendChild(cpscore);
+

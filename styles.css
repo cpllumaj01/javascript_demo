@@ -1,4 +1,80 @@
-body {
-    font-size: 48px;
-    font-family: sans-serif;
+#body {
+    background-color: rgb(28, 28, 28);
+}
+
+#mainContainer {
+    display: flex;
+    margin: 100px 50px 10px;
+    height: 500px;
+    flex-direction: column;
+}
+
+#title {
+    margin-top: 12px;
+    display:flex;
+    color: rgb(217, 19, 19);
+    font-family: 'Rubik Wet Paint', cursive;
+    font-weight: 100;
+    font-size: 28px;
+    word-spacing: 20px;
+    justify-content: center;
+}
+
+#subtitle {
+    margin-left: 250px;
+    margin-top: 0px;
+    display:flex;
+    color: rgb(217, 19, 19);
+    font-family: 'Rubik Wet Paint', cursive;
+    font-weight: 100;
+    font-size: 12px;
+    word-spacing: 5px;
+    justify-content: center;
+}
+
+#gameContainer {
+    display:flex;
+    margin-top:30px;
+}
+
+.rpsContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap:20px;
+}
+
+#r, #p, #s, .c{
+    background-color: rgba(255, 255, 255, 0.459);
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    font-size: 14px;
+    align-self: center;
+    font-family: 'Rubik Wet Paint', cursive;
+    border: none;
+}
+
+.names, .vs, .result{
+    display:flex;
+    justify-content: center;
+    margin-top: 0px;
+    display:flex;
+    color: rgb(217, 19, 19);
+    font-family: 'Rubik Wet Paint', cursive;
+    font-weight: 100;
+    font-size: 24px;
+    word-spacing: 5px;
+    justify-content: center;
+    flex:.5;
+    gap: 18px;
+}
+
+.vs {
+    margin-top: 200px;
+}
+
+.result {
+    height: 30px;
+    margin-bottom: 16px;
 }
