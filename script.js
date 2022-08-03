@@ -96,18 +96,24 @@ function playRound(player, computer) {
 
 //Outputs result of a round
 function outputResult(player){
+    //checks if either cpu or player won
+    fade();
+    if(cptally == 5 || ptally == 5){
+        end();
+        return;
+    }
+
+    //displays round results
     result.textContent = playRound(player, computerPlay());
     pscore.textContent = ptally;
     cpscore.textContent = cptally;
-    if (cptally >= 5){
-        result.textContent = lossMsg;
-        disableButtons();
-        return;
-    } else if (ptally >= 5){
-        result.textContent = winMsg;
-        disableButtons();
-        return;
-    }
+
+    //checks if final msg should be displayed
+    result.textContent = (cptally == 5)? lossMsg: (ptally == 5)? winMsg: result.textContent;
+}
+
+function end(){
+    
 }
 
 //Gets button elements by ID
@@ -157,3 +163,18 @@ const cpname = document.getElementsByClassName('names')[1];
 pname.appendChild(pscore);
 cpname.appendChild(cpscore);
 
+//if given image number in query, it is faded
+function fade(num) {
+    var i = 0;
+    var element = document.getElementsByTagName("img")[num];
+    var k = window.setInterval(function() {
+      if (i > 10) {
+        clearInterval(k);
+      } else {
+        element.style.opacity = (10 - i) / 10;
+        i++;
+      }
+    }, 25);
+  };
+
+  fade(0)

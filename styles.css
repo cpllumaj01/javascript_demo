@@ -5,7 +5,7 @@
 #mainContainer {
     display: flex;
     margin: 100px 50px 10px;
-    height: 500px;
+    height: 640px;
     flex-direction: column;
 }
 
@@ -15,19 +15,19 @@
     color: rgb(217, 19, 19);
     font-family: 'Rubik Wet Paint', cursive;
     font-weight: 100;
-    font-size: 28px;
+    font-size: 38px;
     word-spacing: 20px;
     justify-content: center;
 }
 
 #subtitle {
-    margin-left: 250px;
+    margin-left: 300px;
     margin-top: 0px;
     display:flex;
     color: rgb(217, 19, 19);
     font-family: 'Rubik Wet Paint', cursive;
     font-weight: 100;
-    font-size: 12px;
+    font-size: 18px;
     word-spacing: 5px;
     justify-content: center;
 }
@@ -45,10 +45,8 @@
 }
 
 #r, #p, #s, .c{
-    background-color: rgba(255, 255, 255, 0.459);
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
+    background-color: rgb(28,28,28);
+    color: whitesmoke;
     font-size: 14px;
     align-self: center;
     font-family: 'Rubik Wet Paint', cursive;
@@ -63,7 +61,7 @@
     color: rgb(217, 19, 19);
     font-family: 'Rubik Wet Paint', cursive;
     font-weight: 100;
-    font-size: 24px;
+    font-size: 27px;
     word-spacing: 5px;
     justify-content: center;
     flex:.5;
@@ -71,10 +69,15 @@
 }
 
 .vs {
-    margin-top: 200px;
+    margin-top: 250px;
 }
 
 .result {
     height: 30px;
     margin-bottom: 16px;
+}
+
+.image {
+    height: 130px;
+    width: auto;
 }
