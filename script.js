@@ -25,7 +25,8 @@ function computerPlay() {
     }
 }
 
-/*plays round of rock paper scissor based on 2 inputs and returns result as a string*/
+/*plays round of rock paper scissor based on 2 inputs and returns string
+also increases the winners tally and fades choices not picked*/
 function playRound(player, computer) {
     let tie = `It's a tie, you both choose ${player}`;
     let win = `You win! ${player} beats ${computer}`;
@@ -94,7 +95,6 @@ function playRound(player, computer) {
 
 //Outputs result of a round
 function outputResult(player){
-    
     if(cptally == 5 || ptally == 5){
         return;
     }
@@ -113,23 +113,29 @@ const rock = document.getElementById('r');
 const paper = document.getElementById('p');
 const scissor = document.getElementById('s');
 
+//functions to add strings to output result function
+function outputRock() {outputResult('rock')};
+function outputPaper() {outputResult('paper')};
+function outputScissor() {outputResult('scissor')};
+
 //Enables button eventlisteners
 function enableButtons(){
-    rock.addEventListener('click', ()=> {
-        outputResult('rock');
-    });
-    paper.addEventListener('click', () => {
-        outputResult('paper');
-    });
-    scissor.addEventListener('click', () => {
-        outputResult('scissor');
-    });
+    rock.addEventListener('click', outputRock);
+    paper.addEventListener('click',outputPaper);
+    scissor.addEventListener('click', outputScissor);
 }
 
+//Disables button eventlisteners
+function disableButtons(){
+    rock.removeEventListener('click', outputRock);
+    paper.removeEventListener('click', outputPaper);
+    scissor.removeEventListener('click', outputScissor);
+}
 
 enableButtons();
 
-//gets, creates, and edits element for html
+
+//gets, creates, and edits element from html for script
 const replay = document.querySelector(".replay");
 const body = document.querySelector('#body');
 const result = document.createElement('div');
@@ -158,7 +164,10 @@ function fade(bool, num) {
     }, 25);
 };
 
-//fades out the nonfades images not queried 
+/*fades out the images not queried and fades them back in
+disables buttons during fading
+also checks if the game is over to compleyley fade eveything
+and unfade play again*/
 function fadeOthers(x, y){
     for (let i = 0; i < 6; i++){
         if (i == x || i == y){
@@ -177,7 +186,8 @@ function fadeOthers(x, y){
                 fade(true, y);
                 fadeElement(false, replay);
             }
-        }, 1500);
+            enableButtons();
+        }, 1500); //ms of time until faded back in
     }
 };
 
