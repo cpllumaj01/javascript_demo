@@ -95,6 +95,7 @@ function playRound(player, computer) {
 
 //Outputs result of a round
 function outputResult(player){
+    disableButtons();
     if(cptally == 5 || ptally == 5){
         return;
     }
@@ -117,6 +118,7 @@ const scissor = document.getElementById('s');
 function outputRock() {outputResult('rock')};
 function outputPaper() {outputResult('paper')};
 function outputScissor() {outputResult('scissor')};
+function replayFunc() {playAgain()};
 
 //Enables button eventlisteners
 function enableButtons(){
@@ -185,6 +187,7 @@ function fadeOthers(x, y){
                 fade(true, x);
                 fade(true, y);
                 fadeElement(false, replay);
+                replay.addEventListener('click', replayFunc)
             }
             enableButtons();
         }, 1500); //ms of time until faded back in
@@ -203,3 +206,17 @@ function fadeElement(bool, element) {
       }
     }, 25);
 };
+
+function playAgain() {
+    ptally = 0;
+    cptally = 0;
+    result.textContent = '';
+    pscore.textContent = ptally;
+    cpscore.textContent = cptally;
+    fadeElement(true, replay);
+    for (let i = 0; i < 6; i++){
+        fade(false, i);
+    }
+    replay.removeEventListener('click', replayFunc);
+    enableButtons();
+}
