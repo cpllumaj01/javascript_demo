@@ -186,6 +186,7 @@ function fadeOthers(x, y){
             } else {
                 fade(true, x);
                 fade(true, y);
+                replay.textContent = "Play Again";
                 fadeElement(false, replay);
                 replay.addEventListener('click', replayFunc)
             }
@@ -219,4 +220,7 @@ function playAgain() {
     }
     replay.removeEventListener('click', replayFunc);
     enableButtons();
+    setTimeout(() => {
+        replay.textContent = "";
+    }, 500);
 }
