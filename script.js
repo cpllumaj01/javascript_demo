@@ -25,17 +25,6 @@ function computerPlay() {
     }
 }
 
-//Gets player choice by alert and makes sure its rock paper or scissor
-function playerPlay(){
-    let player = '';
-    while(!player){
-        player = prompt("Choose only rock, paper, or scissor!");
-        player = player.toLowerCase();
-        (player == 'rock' || player == 'paper' || player == 'scissor')? null: player = '';
-    }
-    return player;
-}
-
 /*plays round of rock paper scissor based on 2 inputs and returns result as a string*/
 function playRound(player, computer) {
     let tie = `It's a tie, you both choose ${player}`;
@@ -46,14 +35,17 @@ function playRound(player, computer) {
         case 'rock':
             switch (computer){
                 case 'rock':
+                    fadeOthers(0, 3);
                     return tie;
                     break;
                 case 'paper':
                     cptally++;
+                    fadeOthers(0, 4);
                     return lose;
                     break;
                 case 'scissor':
                     ptally++;
+                    fadeOthers(0, 5);
                     return win;
                     break;
             }
@@ -61,13 +53,16 @@ function playRound(player, computer) {
         case 'paper':
             switch (computer){
                 case 'rock':
+                    fadeOthers(1, 3);
                     ptally++;
                     return win;
                     break;
                 case 'paper':
+                    fadeOthers(1, 4);
                     return tie;
                     break;
                 case 'scissor':
+                    fadeOthers(1, 5);
                     cptally++;
                     return lose;
                     break;
@@ -76,14 +71,17 @@ function playRound(player, computer) {
         case 'scissor':
             switch (computer){
                 case 'rock':
+                    fadeOthers(2, 3);
                     cptally++;
                     return lose;
                     break;
                 case 'paper':
+                    fadeOthers(2, 4);
                     ptally++;
                     return win;
                     break;
                 case 'scissor':
+                    fadeOthers(2, 5);
                     return tie;
                     break;
             }
@@ -96,10 +94,8 @@ function playRound(player, computer) {
 
 //Outputs result of a round
 function outputResult(player){
-    //checks if either cpu or player won
-    fade();
+    
     if(cptally == 5 || ptally == 5){
-        end();
         return;
     }
 
@@ -110,10 +106,6 @@ function outputResult(player){
 
     //checks if final msg should be displayed
     result.textContent = (cptally == 5)? lossMsg: (ptally == 5)? winMsg: result.textContent;
-}
-
-function end(){
-    
 }
 
 //Gets button elements by ID
@@ -134,22 +126,11 @@ function enableButtons(){
     });
 }
 
-//Disables button eventlisteners
-function disableButtons(){
-    rock.removeEventListener('click', ()=> {
-        outputResult('rock');
-    });
-    paper.removeEventListener('click', () => {
-        outputResult('paper');
-    });
-    scissor.removeEventListener('click', () => {
-        outputResult('scissor');
-    });
-}
 
 enableButtons();
 
 //gets, creates, and edits element for html
+const replay = document.querySelector(".replay");
 const body = document.querySelector('#body');
 const result = document.createElement('div');
 result.classList.add('result');
@@ -163,18 +144,52 @@ const cpname = document.getElementsByClassName('names')[1];
 pname.appendChild(pscore);
 cpname.appendChild(cpscore);
 
-//if given image number in query, it is faded
-function fade(num) {
+//if given image number in query, true is fade, false is unfade
+function fade(bool, num) {
     var i = 0;
     var element = document.getElementsByTagName("img")[num];
     var k = window.setInterval(function() {
       if (i > 10) {
         clearInterval(k);
       } else {
-        element.style.opacity = (10 - i) / 10;
+        element.style.opacity = (bool)? (10 - i) / 10: (i) / 10;
         i++;
       }
     }, 25);
-  };
+};
 
-  fade(0)
+//fades out the nonfades images not queried 
+function fadeOthers(x, y){
+    for (let i = 0; i < 6; i++){
+        if (i == x || i == y){
+            continue;
+        } else {
+            fade(true, i);
+        }
+
+        fadeElement(false, result);
+        setTimeout(() => {
+            if(cptally != 5 && ptally != 5){
+                fadeElement(true, result);
+                fade(false, i);
+            } else {
+                fade(true, x);
+                fade(true, y);
+                fadeElement(false, replay);
+            }
+        }, 1500);
+    }
+};
+
+//true fades object, false unfades it
+function fadeElement(bool, element) {
+    var i = 0;
+    var k = window.setInterval(function() {
+      if (i > 10) {
+        clearInterval(k);
+      } else {
+        element.style.opacity = (bool)? (10 - i) / 10: i / 10;
+        i++;
+      }
+    }, 25);
+};
