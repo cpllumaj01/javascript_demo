@@ -1,19 +1,18 @@
 #body {
     background-color: rgb(28, 28, 28);
+    font-family: 'Rubik Wet Paint', cursive;
+    color: rgb(217, 19, 19);
 }
 
 #mainContainer {
     display: flex;
-    margin: 50px 50px 10px;
+    margin: 0px 50px 10px;
     height: 640px;
     flex-direction: column;
 }
 
 #title {
-    margin-top: 12px;
     display:flex;
-    color: rgb(217, 19, 19);
-    font-family: 'Rubik Wet Paint', cursive;
     font-weight: 100;
     font-size: 38px;
     word-spacing: 20px;
@@ -22,10 +21,7 @@
 
 #subtitle {
     margin-left: 200px;
-    margin-top: 0px;
     display:flex;
-    color: rgb(217, 19, 19);
-    font-family: 'Rubik Wet Paint', cursive;
     font-weight: 100;
     font-size: 18px;
     word-spacing: 5px;
@@ -49,8 +45,11 @@
     color: whitesmoke;
     font-size: 14px;
     align-self: center;
-    font-family: 'Rubik Wet Paint', cursive;
     border: none;
+}
+
+#r, #p, #s {
+    cursor: pointer;
 }
 
 .names, .replay, .result{
@@ -58,8 +57,6 @@
     justify-content: center;
     margin-top: 0px;
     display:flex;
-    color: rgb(217, 19, 19);
-    font-family: 'Rubik Wet Paint', cursive;
     font-weight: 100;
     font-size: 27px;
     word-spacing: 5px;
@@ -73,6 +70,8 @@
     opacity: 0;
     text-align: center;
     font-size: 34px;
+    cursor: pointer;
+    height: 0px;
 }
 
 .result {
@@ -83,4 +82,10 @@
 .image {
     height: 130px;
     width: auto;
+}
+
+#returnArrow {
+    height: 30px;
+    width: auto;
+    margin-bottom: 0px;
 }

@@ -36,17 +36,17 @@ function playRound(player, computer) {
         case 'rock':
             switch (computer){
                 case 'rock':
-                    fadeOthers(0, 3);
+                    fadeOthers(1, 4);
                     return tie;
                     break;
                 case 'paper':
                     cptally++;
-                    fadeOthers(0, 4);
+                    fadeOthers(1, 5);
                     return lose;
                     break;
                 case 'scissor':
                     ptally++;
-                    fadeOthers(0, 5);
+                    fadeOthers(1, 6);
                     return win;
                     break;
             }
@@ -54,16 +54,16 @@ function playRound(player, computer) {
         case 'paper':
             switch (computer){
                 case 'rock':
-                    fadeOthers(1, 3);
+                    fadeOthers(2, 4);
                     ptally++;
                     return win;
                     break;
                 case 'paper':
-                    fadeOthers(1, 4);
+                    fadeOthers(2, 5);
                     return tie;
                     break;
                 case 'scissor':
-                    fadeOthers(1, 5);
+                    fadeOthers(2, 6);
                     cptally++;
                     return lose;
                     break;
@@ -72,17 +72,17 @@ function playRound(player, computer) {
         case 'scissor':
             switch (computer){
                 case 'rock':
-                    fadeOthers(2, 3);
+                    fadeOthers(3, 4);
                     cptally++;
                     return lose;
                     break;
                 case 'paper':
-                    fadeOthers(2, 4);
+                    fadeOthers(3, 5);
                     ptally++;
                     return win;
                     break;
                 case 'scissor':
-                    fadeOthers(2, 5);
+                    fadeOthers(3, 6);
                     return tie;
                     break;
             }
@@ -171,7 +171,7 @@ disables buttons during fading
 also checks if the game is over to compleyley fade eveything
 and unfade play again*/
 function fadeOthers(x, y){
-    for (let i = 0; i < 6; i++){
+    for (let i = 1; i < 7; i++){
         if (i == x || i == y){
             continue;
         } else {
@@ -215,7 +215,7 @@ function playAgain() {
     pscore.textContent = ptally;
     cpscore.textContent = cptally;
     fadeElement(true, replay);
-    for (let i = 0; i < 6; i++){
+    for (let i = 1; i < 7; i++){
         fade(false, i);
     }
     replay.removeEventListener('click', replayFunc);
